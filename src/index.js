@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './index.css';
 import AuthorQuiz from './AuthorQuiz';
-import AddArthorForm from './AddAuthorForm';
+import AddAuthorForm from './AddAuthorForm';
 import * as serviceWorker from './serviceWorker';
 import {shuffle, sample} from 'underscore';
 
@@ -76,12 +76,16 @@ function App() {
     return <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
 }
 
+function AuthorWrapper() {
+    return <AddAuthorForm onAddAuthor={console.log} />;
+}
+
 function render() {
     ReactDOM.render(
     <BrowserRouter>
         <React.Fragment>
             <Route exact path="/" component={App} />
-            <Route path="/add" component={AddArthorForm} />
+            <Route path="/add" component={AuthorWrapper} />
         </React.Fragment>
     </BrowserRouter>, document.getElementById('root'));
 }
