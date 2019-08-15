@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './index.css';
 import AuthorQuiz from './AuthorQuiz';
+import AddArthorForm from './AddAuthorForm';
 import * as serviceWorker from './serviceWorker';
 import {shuffle, sample} from 'underscore';
 
@@ -71,13 +72,6 @@ function onAnswerSelected(answer) {
     render();
 }
 
-function AddArthorForm() {
-    return <div>
-        <h1>Add Author</h1>
-        <p></p>
-    </div>;
-}
-
 function App() {
     return <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
 }
@@ -85,10 +79,11 @@ function App() {
 function render() {
     ReactDOM.render(
     <BrowserRouter>
-        <Route exact path="/" component={App} />
-        <Route path="/add" component={AddArthorForm} />
+        <React.Fragment>
+            <Route exact path="/" component={App} />
+            <Route path="/add" component={AddArthorForm} />
+        </React.Fragment>
     </BrowserRouter>, document.getElementById('root'));
 }
-
 render();
 serviceWorker.unregister();
